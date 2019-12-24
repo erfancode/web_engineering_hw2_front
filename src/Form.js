@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import MapsView from './MapsView'
 import TextInput from './TextInput'
 import NumberInput from './NumberInput';
+import io from 'socket.io-client';
+import server from './config/config';
 import {Collapse} from 'react-bootstrap'
 var update = require('immutability-helper');
 
@@ -18,12 +20,16 @@ export default class Form extends React.Component {
         this.toggle = this.toggle.bind(this);
     }
 
+    componentDidMount() {
+        this.socket = io(server);
+    }
+
     handleSubmit(event){
 
         event.preventDefault()
         
 
-        fetch('http://web-engineering-hw2.herokuapp.com/api/submit', 
+        fetch(`${server}/api/submit`, 
             {
                 method: "POST",
                 headers: {

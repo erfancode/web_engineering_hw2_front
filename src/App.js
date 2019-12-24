@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 import './App.css';
 import Form from './Form'
+import server from './config/config';
 
 
 class App extends Component{
@@ -11,9 +13,8 @@ class App extends Component{
     }
 
 
-
     getForms() {
-        fetch("http://web-engineering-hw2.herokuapp.com/api/forms")
+        fetch(`${server}/api/forms`)
             .then(res => res.json())
             .then(res => {
 
@@ -26,13 +27,15 @@ class App extends Component{
     }
 
     componentDidMount() {
+        this.socket = io(server);
+
         this.getForms();
 
     }
 
     getformDescriptor(formId){
 
-        fetch("http://web-engineering-hw2.herokuapp.com/api/forms/" + formId)
+        fetch(`${server}/api/forms/` + formId)
             .then(res => res.json())
             .then((json) => {
                 var joined = this.state.formDescriptors.concat(json.data);
