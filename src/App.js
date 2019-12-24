@@ -13,7 +13,7 @@ class App extends Component{
 
 
     getForms() {
-        fetch("https://web-engineering-hw2.herokuapp.com/api/forms")
+        fetch("http://web-engineering-hw2.herokuapp.com/api/forms")
             .then(res => res.json())
             .then(res => {
 
@@ -32,7 +32,7 @@ class App extends Component{
 
     getformDescriptor(formId){
 
-        fetch("https://web-engineering-hw2.herokuapp.com/api/forms/" + formId)
+        fetch("http://web-engineering-hw2.herokuapp.com/api/forms/" + formId)
             .then(res => res.json())
             .then((json) => {
                 var joined = this.state.formDescriptors.concat(json.data);

@@ -23,7 +23,7 @@ export default class Form extends React.Component {
         event.preventDefault()
         
 
-        fetch('https://web-engineering-hw2.herokuapp.com/api/submit', 
+        fetch('http://web-engineering-hw2.herokuapp.com/api/submit', 
             {
                 method: "POST",
                 headers: {
